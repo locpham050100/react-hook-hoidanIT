@@ -10,9 +10,23 @@ const App = () => {
 
   const [address, setAddress] = useState("");
 
+  const [todos, setTodos] = useState([
+    {
+      id: "todo1",
+      title: "loc1",
+    },
+    { id: "todo2", title: "loc2" },
+    { id: "todo3", title: "loc3" },
+  ]);
+
   const handleEventClick = (e) => {
-    setName(address);
-    console.log(address);
+    if (!address) {
+      alert("emtpy input");
+      return;
+    }
+    let newTodo = { id: "1", title: address };
+    setTodos([...todos, newTodo]);
+    setAddress("");
   };
 
   const handleOnchangeInput = (e) => {
@@ -25,6 +39,16 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Lộc Lộc Cute thích {name} !</h1>
+        <div className="todos-container">
+          {todos.map((todo) => {
+            console.log(">>>>>> list: ", todo);
+            return (
+              <li key={todo.id} className="todo-child">
+                {todo.title}
+              </li>
+            );
+          })}
+        </div>
         <input
           type="text"
           value={address}
