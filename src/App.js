@@ -12,6 +12,7 @@ const App = () => {
 
   const handleEventClick = (e) => {
     setName(address);
+    console.log(address);
   };
 
   const handleOnchangeInput = (e) => {
